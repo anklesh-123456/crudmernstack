@@ -9,7 +9,7 @@ const App = () => {
   const [list, setlist] = useState([])
 
   const postdata =async()=>{
-    const result = await axios.post("http://localhost:3000/post",{name:name,age:age});
+    const result = await axios.post("https://mernstackcrudapp-6uuk.onrender.com/post",{name:name,age:age});
     // console.log(result.data)
     setlist([...list,{_id:result.data._id,name:name, age:age}])
   }
@@ -17,14 +17,14 @@ const App = () => {
   const updatedata =async(id)=>{
     const newname = prompt("enter new name")
     const newage = prompt("enter new age")
-    const data = await axios.put(`http://localhost:3000/update/${id}`,{name:newname,age:newage});
+    const data = await axios.put(`https://mernstackcrudapp-6uuk.onrender.com/${id}`,{name:newname,age:newage});
     // console.log(data)
    setlist(list.map((val)=>{
     return val._id==id ? {_id:id,name:newname,age:newage}:val;
    }))
   }
   const deletedata =async(id)=>{
-    const data = await axios.delete(`http://localhost:3000/delete/${id}`,{name:name,age:age});
+    const data = await axios.delete(`https://mernstackcrudapp-6uuk.onrender.com/${id}`,{name:name,age:age});
     setlist(list.filter((val)=>{
       return val._id!=id;
     }))
@@ -33,7 +33,7 @@ const App = () => {
 
   useEffect(()=>{
     const getdata =async()=>{
-      const result = await axios.get("http://localhost:3000/get");
+      const result = await axios.get("https://mernstackcrudapp-6uuk.onrender.com/get");
       // console.log(result.data);
       setlist(result.data)
     }
